@@ -10,25 +10,15 @@ namespace TextBasedRpg.Data
         {
             string json = JsonConvert.SerializeObject(saveData);
             Console.WriteLine(json);
-            WriteFile("Data/save1.json", json);
+            File.WriteAllText("Data/save1.json", json);
             return json;
         }
 
         public static SaveData Load()
         {
-            string json = ReadFile("Data/save1.json");
+            string json = File.ReadAllText("Data/save1.json");
             Console.WriteLine(json);
             return JsonConvert.DeserializeObject<SaveData>(json);
-        }
-
-        private static string ReadFile(string fileName)
-        {
-            return File.ReadAllText(fileName);
-        }
-
-        private static void WriteFile(string fileName, string json)
-        {
-            File.WriteAllText(fileName, json);
         }
     }
 }

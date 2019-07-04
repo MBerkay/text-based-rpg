@@ -2,7 +2,7 @@ using System;
 
 namespace TextBasedRpg
 {
-    public abstract class Character
+    public abstract class Character 
     {
         private string _name;
         private int _currentHitPoint;
@@ -13,6 +13,8 @@ namespace TextBasedRpg
         private int _maxStamina;
         private int _specialAttackCost;
 
+        #region Properties
+        
         public int CurrentStamina
         {
             get { return _currentStamina; }
@@ -54,8 +56,15 @@ namespace TextBasedRpg
             get { return _specialAttackCost; }
             set { _specialAttackCost = value; }
         }
-        
-        public bool CanPerformSpecialAttack => _currentStamina > SpecialAttackCost; //TODO Ask Method vs Property 
+        #endregion
+
+        public bool CanPerformSpecialAttack => CurrentStamina > SpecialAttackCost; //Ask Method vs Property 
+
+        public int CurrentHitPoint
+        {
+            get { return _currentHitPoint; }
+            set { _currentHitPoint = value; }
+        }
 
         /// Doesn't consume stamina
         public void PerformBasicAttackOn(Character enemy)
@@ -63,7 +72,7 @@ namespace TextBasedRpg
             int calculatedDmg = AttackPoint + Dice.Roll(6) - enemy.DefensePoint;
             enemy.TakeDamage(calculatedDmg);
         }
-        
+
         /*public virtual void PerformSpecialAttackOn(Character enemy)
         {
         }*/
@@ -71,23 +80,22 @@ namespace TextBasedRpg
 
         public virtual void TakeDamage(int damage)
         {
-            _currentHitPoint -= damage;
-            if (_currentHitPoint < 0)
+            CurrentHitPoint -= damage;
+            if (CurrentHitPoint < 0)
             {
-                
             }
             Console.WriteLine("Damage taken " + damage);
         }
 
         public void Heal(int point)
         {
-           _currentHitPoint = Math.Min(_currentHitPoint + point, _maxHitPoint);
+            CurrentHitPoint = Math.Min(CurrentHitPoint + point, MaxHitPoint);
         }
-        
-        
+
+
         public event EventHandler<string> OnActionPerformed;
         public event EventHandler OnKilled;
-        
+
         private void OnKilledEvent()
         {
             OnKilled?.Invoke(this, new System.EventArgs());
@@ -97,6 +105,5 @@ namespace TextBasedRpg
         {
             OnActionPerformed?.Invoke(this, result);
         }
-        
     }
 }

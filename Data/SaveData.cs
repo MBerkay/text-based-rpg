@@ -5,9 +5,9 @@ namespace TextBasedRpg.Data
         public int Id { get; set; }
         public string Name;
         public int Level;
-        
-        public SaveData(){
-    
+
+        public SaveData()
+        {
         }
     }
 }

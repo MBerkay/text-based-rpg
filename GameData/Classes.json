@@ -1,0 +1,17 @@
+{
+  "Mage": {
+    "_maxHitPoint": 20,
+    "_attackPoint": 5,
+    "_defensePoint": 5,
+    "_maxStamina": 5,
+    "_specialAttackCost": 3
+  },
+  "Warrior": {
+    "_maxHitPoint": 20,
+    "_attackPoint": 5,
+    "_defensePoint": 5,
+    "_maxStamina": 5,
+    "_specialAttackCost": 3
+  }
+}
+

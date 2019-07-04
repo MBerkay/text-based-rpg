@@ -1,0 +1,2 @@
+IPLayerClass is necessary or can use method in character class 
+//TODO namespace hierarchy
